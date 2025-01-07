@@ -1,0 +1,35 @@
+{
+  "name": "pnp-pdf-example",
+  "version": "1.0.0",
+  "description": "Plug and play pdf files using pdf.js",
+  "keywords": [
+    "pnp-pdf",
+    "pdf viewer",
+    "pdfjs",
+    "mozilla pdf viewer"
+  ],
+  "homepage": "https://github.com/abhisekdutta507/pnp-pdf-example#readme",
+  "bugs": {
+    "url": "https://github.com/abhisekdutta507/pnp-pdf-example/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhisekdutta507/pnp-pdf-example.git"
+  },
+  "license": "MIT",
+  "author": "abhisek507",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "main": "index.ts",
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^4.10.38"
+  }
+}
