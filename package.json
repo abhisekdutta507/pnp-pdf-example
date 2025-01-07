@@ -21,15 +21,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "main": "index.ts",
   "devDependencies": {
     "typescript": "^5.7.2",
     "vite": "^6.0.7"
-  },
-  "dependencies": {
-    "pdfjs-dist": "^4.10.38"
   }
 }

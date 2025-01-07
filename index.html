@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/pdf.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Plug & Play PDF</title>
-  </head>
-  <body>
-    <div id="pnp-pdf-wrapper"></div>
-    <script type="module" src="/src/index.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/pdf.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plug & Play PDF</title>
+</head>
+
+<body tabindex="0">
+  <div id="outerContainer">
+    <div id="mainContainer">
+      <div id="floatingToolbar">
+        <button id="download" class="toolbarButton" type="button" title="Download" tabindex="0"
+          data-l10n-id="pdfjs-download-button">
+          <span data-l10n-id="pdfjs-download-button-label">Download</span>
+        </button>
+      </div>
+
+      <div id="viewerContainer" tabindex="0">
+        <div id="viewer" class="pdfViewer"></div>
+      </div>
+    </div>
+    <!-- mainContainer -->
+  </div>
+  <!-- outerContainer -->
+  <div id="printContainer"></div>
+  <script type="module" src="/src/index.js"></script>
+</body>
+
 </html>
