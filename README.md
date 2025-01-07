@@ -13,6 +13,7 @@ Visit [app.js](./src//app.js) file. And find `HOSTED_VIEWER_ORIGINS`.
 ```js
 const HOSTED_VIEWER_ORIGINS = [
   "null",
+  "http://localhost:4173",
   "http://localhost:5173",
   "http://mozilla.github.io",
   "https://mozilla.github.io",
@@ -61,8 +62,83 @@ npm run dev
 
 Visit [http://localhost:5173](http://localhost:5173) to see the result.
 
+#### Generate a build
+
+Before generating the build file we must change the [workerSrc]() in [app_options.js](./src//app_options.js).
+
+##### Default `workerSrc`:
+
+```js
+const workerSrc = {
+  /** @type {string} */
+  value:
+    // eslint-disable-next-line no-nested-ternary
+    typeof PDFJSDev === "undefined"
+      ? "../build/pdf.worker.mjs"
+      : PDFJSDev.test("MOZCENTRAL")
+        ? "resource://pdf.js/build/pdf.worker.mjs"
+        : "../build/pdf.worker.mjs",
+  kind: OptionKind.WORKER,
+}
+```
+
+##### Build specific `workerSrc`:
+
+```js
+const workerSrc = {
+  /** @type {string} */
+  value:
+    // eslint-disable-next-line no-nested-ternary
+    typeof PDFJSDev === "undefined"
+      ? "../assets/pdf.worker.mjs"
+      : PDFJSDev.test("MOZCENTRAL")
+        ? "resource://pdf.js/build/pdf.worker.mjs"
+        : "../build/pdf.worker.mjs",
+  kind: OptionKind.WORKER,
+}
+```
+
+##### Run the build command
+
+```sh
+npm run build
+```
+
+#### Preview the build
+
+```sh
+npm run preview
+```
+
+Visit [http://localhost:4173](http://localhost:4173) to see the result.
+
+### Do's
+
+Make sure the dist contains the exact folder structure.
+
+- assets
+  - images
+  - cursor-editorTextHighlight-*.svg
+  - index-*.js
+  - index-*.css
+  - pdf.worker.js
+- documents
+  - example.pdf
+- index.html
+- pdf.png
+
+The [index-*.js]() will point to [pdf.worker-*.js](). Make sure we rename the file to [pdf.worker.js]().
+
 #### Publish the build files
 
 ```sh
 npm publish --access=public
 ```
+
+### Credits
+
+1. [pdfjs](https://mozilla.github.io/pdf.js/examples/)
+
+### Support
+
+Tested in Chrome 131, Firefox 133, Safari 18, DuckDuckGo 1.118.0.

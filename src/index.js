@@ -233,7 +233,7 @@ function webViewerLoad() {
   /**
    * @description prepare the app options
    */
-  AppOptions.set("defaultUrl", "http://localhost:5173/documents/example.pdf");
+  AppOptions.set("defaultUrl", "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf");
   PDFViewerApplication.run(config);
 }
 
