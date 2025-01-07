@@ -6,6 +6,19 @@ Chrome browser might not be able to handle large PDF file on it's own. Mozilla's
 
 Please see the [index.html](./index.html) file for more details.
 
+#### Add your domain in the HOSTED_VIEWER_ORIGINS
+
+Visit [app.js](./src//app.js) file. And find `HOSTED_VIEWER_ORIGINS`.
+
+```js
+const HOSTED_VIEWER_ORIGINS = [
+  "null",
+  "http://localhost:5173",
+  "http://mozilla.github.io",
+  "https://mozilla.github.io",
+];
+```
+
 #### Control what you want to display
 
 Please see the [index.js](./src/index.js) file for more details.
@@ -25,9 +38,15 @@ function webViewerLoad() {
   // ...
 
   /**
-   * @description prepare the app options
+   * @description prepare the app options with defaultUrl
    */
+  // Local URL
   AppOptions.set("defaultUrl", "http://localhost:5173/documents/example.pdf");
+  // or https URL
+  AppOptions.set("defaultUrl", "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf");
+  // or Base64 string
+  AppOptions.set("defaultUrl", "data:application/pdf;base64,");
+
   PDFViewerApplication.run(config);
 }
 ```
