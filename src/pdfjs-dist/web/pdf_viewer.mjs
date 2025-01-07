@@ -6242,7 +6242,7 @@ async function docProperties(pdfDocument) {
 class GenericScripting {
   constructor(sandboxBundleSrc) {
     this._ready = new Promise((resolve, reject) => {
-      const sandbox = import(/*webpackIgnore: true*/sandboxBundleSrc);
+      const sandbox = import(/*webpackIgnore: true*/ /* @vite-ignore */sandboxBundleSrc);
       sandbox.then(pdfjsSandbox => {
         resolve(pdfjsSandbox.QuickJSSandbox());
       }).catch(reject);
@@ -6860,6 +6860,7 @@ class PDFViewer {
       throw new Error(`The API version "${version}" does not match the Viewer version "${viewerVersion}".`);
     }
     this.container = options.container;
+
     this.viewer = options.viewer || options.container.firstElementChild;
     if (this.container?.tagName !== "DIV" || this.viewer?.tagName !== "DIV") {
       throw new Error("Invalid `container` and/or `viewer` option.");

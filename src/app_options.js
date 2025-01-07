@@ -442,7 +442,7 @@ const defaultOptions = {
     value:
       // eslint-disable-next-line no-nested-ternary
       typeof PDFJSDev === "undefined"
-        ? "../src/pdf.worker.js"
+        ? "../build/pdf.worker.mjs"
         : PDFJSDev.test("MOZCENTRAL")
           ? "resource://pdf.js/build/pdf.worker.mjs"
           : "../build/pdf.worker.mjs",
