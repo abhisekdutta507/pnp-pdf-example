@@ -64,7 +64,7 @@ Visit [http://localhost:5173](http://localhost:5173) to see the result.
 
 #### Generate a build
 
-Before generating the build file we must change the [workerSrc]() in [app_options.js](./src//app_options.js).
+Before generating the build file we must change the [workerSrc]() in [app_options.js](./src/app_options.js).
 
 ##### Default `workerSrc`:
 
@@ -90,7 +90,7 @@ const workerSrc = {
   value:
     // eslint-disable-next-line no-nested-ternary
     typeof PDFJSDev === "undefined"
-      ? "../assets/pdf.worker.mjs"
+      ? "../assets/pdf.worker.js"
       : PDFJSDev.test("MOZCENTRAL")
         ? "resource://pdf.js/build/pdf.worker.mjs"
         : "../build/pdf.worker.mjs",
@@ -103,14 +103,6 @@ const workerSrc = {
 ```sh
 npm run build
 ```
-
-#### Preview the build
-
-```sh
-npm run preview
-```
-
-Visit [http://localhost:4173](http://localhost:4173) to see the result.
 
 ### Do's
 
@@ -127,7 +119,40 @@ Make sure the dist contains the exact folder structure.
 - index.html
 - pdf.png
 
-The [index-*.js]() will point to [pdf.worker-*.js](). Make sure we rename the file to [pdf.worker.js]().
+The [index-*.js]() will point to [pdf.worker-*.js](). Make sure we rename the file to [pdf.worker.js](./dist/assets/pdf.worker.js).
+
+Also, [index-*.js]() should be renamed as [pdf.js](./dist/assets/pdf.js). And [index-*.css]() to [styles.css](./dist/assets/styles.css).
+
+### Execute the runner
+
+```js
+import { run } from "./assets/pdf.js";
+
+const fileURL = "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf";
+
+const mounted = () => {
+  run(fileURL);
+};
+
+document.blockUnblockOnload?.(true);
+
+if (
+  document.readyState === "interactive" ||
+  document.readyState === "complete"
+) {
+  mounted();
+} else {
+  document.addEventListener("DOMContentLoaded", mounted, true);
+}
+```
+
+#### Preview the build
+
+```sh
+npm run preview
+```
+
+Visit [http://localhost:4173](http://localhost:4173) to see the result.
 
 #### Publish the build files
 

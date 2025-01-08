@@ -2251,17 +2251,19 @@ if (typeof PDFJSDev === "undefined" || !PDFJSDev.test("MOZCENTRAL")) {
 if (typeof PDFJSDev === "undefined" || PDFJSDev.test("GENERIC")) {
   const HOSTED_VIEWER_ORIGINS = [
     "null",
-    "http://localhost:4173",
     "http://localhost:5173",
-    "http://mozilla.github.io",
     "https://mozilla.github.io",
   ];
+  const ALLOW_ALL_ORIGINS = true;
   // eslint-disable-next-line no-var
   var validateFileURL = function (file) {
     if (!file) {
       return;
     }
     try {
+      if (ALLOW_ALL_ORIGINS) {
+        return;
+      }
       const viewerOrigin = new URL(window.location.href).origin || "null";
       if (HOSTED_VIEWER_ORIGINS.includes(viewerOrigin)) {
         // Hosted or local viewer, allow for any file locations
