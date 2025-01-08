@@ -64,7 +64,7 @@ Visit [http://localhost:5173](http://localhost:5173) to see the result.
 
 #### Generate a build
 
-Before generating the build file we must change the [workerSrc]() in [app_options.js](./src//app_options.js).
+Before generating the build file we must change the [workerSrc]() in [app_options.js](./src/app_options.js).
 
 ##### Default `workerSrc`:
 
@@ -90,7 +90,7 @@ const workerSrc = {
   value:
     // eslint-disable-next-line no-nested-ternary
     typeof PDFJSDev === "undefined"
-      ? "../assets/pdf.worker.mjs"
+      ? "../assets/pdf.worker.js"
       : PDFJSDev.test("MOZCENTRAL")
         ? "resource://pdf.js/build/pdf.worker.mjs"
         : "../build/pdf.worker.mjs",
@@ -103,14 +103,6 @@ const workerSrc = {
 ```sh
 npm run build
 ```
-
-#### Preview the build
-
-```sh
-npm run preview
-```
-
-Visit [http://localhost:4173](http://localhost:4173) to see the result.
 
 ### Do's
 
@@ -153,6 +145,14 @@ if (
   document.addEventListener("DOMContentLoaded", mounted, true);
 }
 ```
+
+#### Preview the build
+
+```sh
+npm run preview
+```
+
+Visit [http://localhost:4173](http://localhost:4173) to see the result.
 
 #### Publish the build files
 
