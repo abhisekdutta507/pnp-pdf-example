@@ -127,7 +127,32 @@ Make sure the dist contains the exact folder structure.
 - index.html
 - pdf.png
 
-The [index-*.js]() will point to [pdf.worker-*.js](). Make sure we rename the file to [pdf.worker.js]().
+The [index-*.js]() will point to [pdf.worker-*.js](). Make sure we rename the file to [pdf.worker.js](./dist/assets/pdf.worker.js).
+
+Also, [index-*.js]() should be renamed as [pdf.js](./dist/assets/pdf.js). And [index-*.css]() to [styles.css](./dist/assets/styles.css).
+
+### Execute the runner
+
+```js
+import { run } from "./assets/pdf.js";
+
+const fileURL = "https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf";
+
+const mounted = () => {
+  run(fileURL);
+};
+
+document.blockUnblockOnload?.(true);
+
+if (
+  document.readyState === "interactive" ||
+  document.readyState === "complete"
+) {
+  mounted();
+} else {
+  document.addEventListener("DOMContentLoaded", mounted, true);
+}
+```
 
 #### Publish the build files
 
